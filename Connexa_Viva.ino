@@ -15,8 +15,8 @@
 
 // this constant won't change:
 const int  buttonPin = 2;    // the pin that the pushbutton is attached to
-const int contactledPin = 13;       // the pin that the LED is attached to
-const int happyledPin = 12;       // the pin that the LED is attached to
+const int contactledPin = 3;       // the pin that the LED is attached to
+const int metamorphledPin = 12;       // the pin that the LED is attached to
 
 
 // Variables will change:
@@ -25,7 +25,7 @@ int lastButtonState = 0;     // previous state of the button
 
 //time reflexes timer
 long unsigned lastTap = 0;
-int happyTimer = 4000; // each 4 contact seconds, CV will be happy
+int metamorphTimer = 4000; // each 4 contact seconds, CV will metamorph
 int touchtime = 500;
 
 void setup() {
@@ -52,7 +52,7 @@ void loop() {
 
       Serial.println(0);
       digitalWrite(contactledPin, HIGH);
-//      digitalWrite(happyledPin, LOW);
+//      digitalWrite(metamorphledPin, LOW);
     } 
     else {
       // if the current state is LOW then the button
@@ -64,11 +64,11 @@ void loop() {
 
 
 
-    //be happy if contact is more than 4 seconds
-    if((millis() - lastTap) > happyTimer) {
+    //be metamorph if contact is more than 4 seconds
+    if((millis() - lastTap) > metamorphTimer) {
       // doseOff();
       Serial.println(1);
-//      digitalWrite(happyledPin, HIGH);
+//      digitalWrite(metamorphledPin, HIGH);
     }
   
   }
