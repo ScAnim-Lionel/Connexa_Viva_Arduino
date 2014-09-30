@@ -26,7 +26,7 @@ int lastButtonState = 0;     // previous state of the button
 //time reflexes timer
 long unsigned lastTap = 0;
 int happyTimer = 4000; // each 4 contact seconds, CV will be happy
-
+int touchtime = 500;
 
 void setup() {
   // initialize the button pin as a input:
@@ -50,9 +50,9 @@ void loop() {
       // wend from off to on:
       lastTap = millis(); //record time of tap (since arduino was started/Reset)
 
-      Serial.println("tap");
+      Serial.println(0);
       digitalWrite(contactledPin, HIGH);
-      digitalWrite(happyledPin, LOW);
+//      digitalWrite(happyledPin, LOW);
     } 
     else {
       // if the current state is LOW then the button
@@ -61,14 +61,23 @@ void loop() {
 
     }
 
+
+
+
     //be happy if contact is more than 4 seconds
     if((millis() - lastTap) > happyTimer) {
       // doseOff();
-      Serial.println("happy");
-      digitalWrite(happyledPin, HIGH);
+      Serial.println(1);
+//      digitalWrite(happyledPin, HIGH);
     }
+  
   }
   // save the current state as the last state, 
   //for next time through the loop
   lastButtonState = buttonState; 
+  
+    if((millis() - lastTap) > touchtime) {
+      digitalWrite(contactledPin, LOW);
+
+    }
 }
