@@ -8,8 +8,8 @@
  The circuit:
  * Interface Z capacitive sensor output on D2
  * 10K resistor attached to pin 2 from +5V
- * LED attached from pin 13 to ground (or use the built-in LED on
- most Arduino boards)
+ * sensor LED attached from pin 3 to ground through 150R resistor 
+ * status LED
  
  */
 
@@ -25,8 +25,8 @@ int lastButtonState = 0;     // previous state of the button
 
 //time reflexes timer
 long unsigned lastTap = 0;
-int metamorphTimer = 4000; // each 4 contact seconds, CV will metamorph
-int touchtime = 500;
+int metamorphTimer = 4000; // Timer to trigg metamorphosis
+int touchtime = 500; // Timer to switch off the contact led
 
 void setup() {
   // initialize the button pin as a input:
@@ -41,7 +41,7 @@ void setup() {
 void loop() {
   // read the pushbutton input pin:
   buttonState = digitalRead(buttonPin);
-  // delay (1);
+  delay (50);
   // compare the buttonState to its previous state
   if (buttonState != lastButtonState) {
     // if the state has changed, increment the counter
